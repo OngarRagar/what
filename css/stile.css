@@ -452,6 +452,7 @@
   .raiting{
     margin-top: 5px;
     width: 100%;
+    display: block;
   }
   .riting-zvezda{
     width: 20px ; 
