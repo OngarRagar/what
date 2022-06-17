@@ -14,6 +14,34 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
   <link rel="stylesheet" href="css/stile.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <style type="text/css">
+    .body {
+      background: #26a69a;
+    }
+
+    .codeContainer {
+      margin-top: 50px;
+      border-radius: 10px;
+      padding: 0;
+      background: #fff;
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+        0 1px 10px 0 rgba(0, 0, 0, 0.12),
+        0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .banner {
+      background: #e0dddd;
+      margin: 0;
+      padding: 15px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .pd-15 {
+      padding: 15px;
+    }
+  </style>
 </head>
 
 <body>
@@ -98,26 +126,71 @@
     </div>
   </header>
   <!-- Конец шапки -->
-  <div class="code">
-    <!-- Сюда можно вставлять пробный код, и ничего более -->
-    <!-- 
-      <script ript>
-        (function(w,d,u){
-          var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
-          var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
-        })
-        (window,document,'https://cdn-ru.bitrix24.ru/b13595920/crm/site_button/loader_2_h77q40.js');
-      </script> 
-    -->
-  </div>
-  <div class="page-content container cont">
-    <script>!function (a, m, o, c, r, m) { a[o + c] = a[o + c] || { setMeta: function (p) { this.params = (this.params || []).concat([p]) } }, a[o + r] = a[o + r] || function (f) { a[o + r].f = (a[o + r].f || []).concat([f]) }, a[o + r]({ id: "943354", hash: "63e44362d3bcd3b3ab60bf7da743ccd3", locale: "ru" }), a[o + m] = a[o + m] || function (f, k) { a[o + m].f = (a[o + m].f || []).concat([[f, k]]) } }(window, 0, "amo_forms_", "params", "load", "loaded");</script>
-    <script id="amoforms_script_943354" async="async" charset="utf-8"
-      src="https://forms.amocrm.ru/forms/assets/js/amoforms.js?1654701203"></script>
 
+  <div class="body">
+    <div class="rov">
+      <div class="col-md-4 col-md-ofset-4 codeContainer">
+        <h3 class="baner text-center">
+          Генератор штрих кодов, нескольких видов.
+        </h3>
+
+        <div class="pd-15">
+          <div class="form-group">
+            <label>Текст кторый надо закодировать</label>
+            <input type="text" id="darcodeValue" class="form-control" value="123456" name="">
+          </div>
+
+          <div class="form-group">
+            <label>Выберите тип кодировки:</label>
+            <select id="barcodeType" class="form-control">
+              <option value="code128">Code 128</option>
+              <option value="codabar">Codabar</option>
+              <option value="code39">Code 39</option>
+              <option value="msi">MSI</option>
+              <option value="pharmacode">Pharmacode</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Вывести закодированный текст под штрих кодом?</label>
+            <select id="showText" class="form-control">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+
+          <input type="button" onclick="generateBarcode()" class="btn btn-success form-control" value="Generate"
+            name="">
+
+          <div class="text-center">
+            <svg id="barcode"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /.page-content -->
-  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+  <script type="text/javascript" id="jsbarcode-script"
+    src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  <!-- <script src="js/JsBarcode.all.min.js"></script> -->
+  <script type="text/javascript">
+    function generateBarcode() {
+      var darcodeValue = document.getElementById("darcodeValue").value;
+      var barcodeType = document.getElementById("barcodeType").value;
+      var showText = document.getElementById("showText").value;
+
+      JsBarcode("#barcode", darcodeValue, {
+        format: barcodeType,
+        lineColor: "#24292e",
+        width: 1,
+        height: 40,
+        displayValue: showText,
+        fontSize: 20
+      });
+    }
+    generateBarcode();
+  </script>
+
   <script src="js/main.js"></script>
 </body>
 
