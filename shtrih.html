@@ -18,10 +18,19 @@
   <style type="text/css">
     .body {
       background: #26a69a;
+      align-content: center;
+      max-width: auto;
+    }
+
+    .rov {
+      max-width: auto;
     }
 
     .codeContainer {
+      max-width: auto;
       margin-top: 50px;
+      margin-left: auto;
+      margin-right: auto;
       border-radius: 10px;
       padding: 0;
       background: #fff;
@@ -36,6 +45,11 @@
       padding: 15px;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
+    }
+
+    .page-content {
+      grid-template-columns: 12fr;
+
     }
 
     .pd-15 {
@@ -126,50 +140,50 @@
     </div>
   </header>
   <!-- Конец шапки -->
+  <div class="page-content container cont">
+    <div class="body">
+      <div class="rov">
+        <div class="col-md-4 col-md-ofset-4 codeContainer">
+          <h3 class="baner text-center">
+            Генератор штрих кодов, нескольких видов.
+          </h3>
 
-  <div class="body">
-    <div class="rov">
-      <div class="col-md-4 col-md-ofset-4 codeContainer">
-        <h3 class="baner text-center">
-          Генератор штрих кодов, нескольких видов.
-        </h3>
+          <div class="pd-15">
+            <div class="form-group">
+              <label>Текст кторый надо закодировать</label>
+              <input type="text" id="darcodeValue" class="form-control" value="123456" name="">
+            </div>
 
-        <div class="pd-15">
-          <div class="form-group">
-            <label>Текст кторый надо закодировать</label>
-            <input type="text" id="darcodeValue" class="form-control" value="123456" name="">
-          </div>
+            <div class="form-group">
+              <label>Выберите тип кодировки:</label>
+              <select id="barcodeType" class="form-control">
+                <option value="code128">Code 128</option>
+                <option value="codabar">Codabar</option>
+                <option value="code39">Code 39</option>
+                <option value="msi">MSI</option>
+                <option value="pharmacode">Pharmacode</option>
+              </select>
+            </div>
 
-          <div class="form-group">
-            <label>Выберите тип кодировки:</label>
-            <select id="barcodeType" class="form-control">
-              <option value="code128">Code 128</option>
-              <option value="codabar">Codabar</option>
-              <option value="code39">Code 39</option>
-              <option value="msi">MSI</option>
-              <option value="pharmacode">Pharmacode</option>
-            </select>
-          </div>
+            <div class="form-group">
+              <label>Вывести закодированный текст под штрих кодом?</label>
+              <select id="showText" class="form-control">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </div>
 
-          <div class="form-group">
-            <label>Вывести закодированный текст под штрих кодом?</label>
-            <select id="showText" class="form-control">
-              <option value="true">Yes</option>
-              <option value="false">No</option>
-            </select>
-          </div>
+            <input type="button" onclick="generateBarcode()" class="btn btn-success form-control" value="Generate"
+              name="">
 
-          <input type="button" onclick="generateBarcode()" class="btn btn-success form-control" value="Generate"
-            name="">
-
-          <div class="text-center">
-            <svg id="barcode"></svg>
+            <div class="text-center">
+              <svg id="barcode"></svg>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <script type="text/javascript" id="jsbarcode-script"
     src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
   <!-- <script src="js/JsBarcode.all.min.js"></script> -->
